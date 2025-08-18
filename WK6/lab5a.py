@@ -15,11 +15,8 @@ with open('C:\Users\jakep\Downloads\Lab5A.txt', 'r') as file:
 
 mis_count = 0
 for i in range(len(lines)):
-    if lines[4].strip() == 'MIS':
-        email = lines[i].strip().split(',')[3] # Assuming email is the 4th item in the line
-        new_email = change_email(email)
-        lines[i] = lines[i].replace(email, new_email)
-        mis_count += 1
+    if lines[4].strip() == 'MIS': #.strip method removes any leading or trailing whitespace
+      
     else:
         print(f"Employee {i+1} is not in the MIS Department.")
 
