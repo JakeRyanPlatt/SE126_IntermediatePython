@@ -5,11 +5,13 @@
 import csv, os
 #============ Functions ===============
 def sequential_search():
+    mis_count = 0
     for i in range(len(email)):
         if dept[i] in "MIS":
-            change_email[i]
-            count += 1
-    return count
+            change_email(i)
+            mis_count += 1
+            
+    return mis_count
 
 
 def change_email(i):
@@ -25,10 +27,10 @@ email = []
 dept = []
 employeePosition = []
 records = 0 
-mis_count = 0
+
 
 #============ Main Program ===============
-with open("C:/Lab5A.txt") as f:
+with open("C:\\Lab5A.txt") as f:
     data = csv.reader(f)
     for row in data:
         fname.append(row[0])
@@ -40,6 +42,12 @@ with open("C:/Lab5A.txt") as f:
         records += 1
 
 newEmail = sequential_search()
-print(f" The total number of records changed {records}\nTotal Number of changes made: {mis_count}")
+
+with open("C:\\Lab5A.txt", "w") as f:
+    dataWriter = csv.writer(f)
+    for i in range(records):
+        dataWriter.writerow([fname[i],lname[i],phone[i],email[i],dept[i],employeePosition[i]])
+
+print(f" The total number of records changed {records}\nTotal Number of changes made: {newEmail}")
 
         
