@@ -1,30 +1,45 @@
-def seatMap():
-    print("\t\t 1,")
+import csv
 
+#============ Functions ===============
+def sequential_search():
+    for i in range(len(lname)):
+        if lname[i] == search_index:
+            print("Employee found:")
+            print("First Name:", fname[i])
+            print("Last Name:", lname[i])
+            print("Phone:", phone[i])
+            print("Email:", email[i])
+            print("Department:", dept[i])
+            print("Position:", employeePosition[i])
+            return i
+    return -1
 
-row1 = ["0", "A", "B", "C", "D"]
-row2 = ["0", "A", "B", "C", "D"]
-row3 = ["0", "A", "B", "C", "D"]
-row4 = ["0", "A", "B", "C", "D"]
-row5 = ["0", "A", "B", "C", "D"]
-row6 = ["0", "A", "B", "C", "D"] 
-row7 = ["0", "A", "B", "C", "D"]
+#============= Global Variables ===============
+fname = []
+lname = []
+phone = []
+email = []
+dept = []
+employeePosition = []
+records = 0
 
+#============ Main Program ==================
+with open("C:\\Lab4B.txt", "r") as file:
+    data = csv.reader(file)
+    for row in data:
+        fname.append(row[0])
+        lname.append(row[1])
+        phone.append(row[2])
+        email.append(row[3])
+        dept.append(row[4])
+        employeePosition.append(row[5])
+        records += 1
 
-seatMap()
-row = int(input("Which "))        
-seat = input(f"Which seat in row {row} would you like to sit in ? ")
+search_index = input("Please enter an employee's last name to search for: ")
 
+sequential_search()
 
-occupied = 0
-if row1[1] == "X":
-    occupied = 1
-elif row1[2] == "X":
-    occupied = 1
-elif row1[3] == "X":
-    occupied = 1
-elif row[4] == "X":
-    occupied = 1
-
-
-reserveSeat(row,seat)
+with open("C:\\information.csv", "w", newline='') as file:
+    dataWriter = csv.writer(file)
+    for i in range(records):
+        dataWriter.writerow([fname[i], lname[i], phone[i], email[i], dept[i], employeePosition[i]])
