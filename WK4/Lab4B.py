@@ -43,3 +43,5 @@ with open("C:\\information.csv", "w", newline='') as file:
     dataWriter = csv.writer(file)
     for i in range(records):
         dataWriter.writerow([fname[i], lname[i], phone[i], email[i], dept[i], employeePosition[i]])
+
+
